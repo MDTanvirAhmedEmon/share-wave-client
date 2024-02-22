@@ -24,12 +24,11 @@ const LeftSidebar = () => {
           <Sidebar.Item
             href="#"
             icon={<LockSimple size={24} />}
-            label="pro"
             labelColor="gray"
           >
             Components
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<Chat size={24} />} label="3">
+          <Sidebar.Item href="#" icon={<Chat size={24} />}>
             Inbox
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={<Users size={24} />}>

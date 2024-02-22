@@ -4,8 +4,7 @@ import { Button } from "keep-react";
 const HomePage = () => {
   return (
     <div>
-      <h1 className="text-5xl mb-[52000px]">This is home page.</h1>
-
+      <h1 className="text-5xl mb-[2000px]">This is home page.</h1>
     </div>
   );
 };

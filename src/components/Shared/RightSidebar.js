@@ -8,9 +8,9 @@ const RightSidebar = () => {
       <Card
         imgSrc="https://images.prismic.io/staticmania/821cee7b-6b44-48c4-ab95-8a525056489d_blog.jpg?auto=compress,format"
         imgSize="md"
-        className="max-w-xs"
+        className="max-w-xs border-none rounded-none "
       >
-        <Card.Container className="absolute right-3.5 top-3.5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-metal-200">
+        <Card.Container className="absolute right-3.5 top-3.5 flex h-10 w-10 cursor-pointer items-center justify-center bg-metal-200 rounded-none">
           <Heart size={20} weight="bold" color="white" />
         </Card.Container>
         <Card.Container className="flex flex-col items-center justify-center">
