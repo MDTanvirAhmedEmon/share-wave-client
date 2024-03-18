@@ -1,10 +1,11 @@
 "use client";
-import { Button } from "keep-react";
 
 const HomePage = () => {
+
   return (
-    <div>
-      <h1 className="text-5xl mb-[2000px]">This is home page.</h1>
+    <div className=" mb-[2000px]">
+      <h1 className="text-5xl bg-primary">This is home page.</h1>
+
     </div>
   );
 };

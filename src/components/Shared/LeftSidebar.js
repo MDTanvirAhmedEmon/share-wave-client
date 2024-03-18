@@ -1,52 +1,56 @@
 "use client";
 import { Sidebar } from "keep-react";
+import { SignIn } from "phosphor-react";
 import {
-  Chat,
-  LockSimple,
-  ShoppingBagOpen,
-  ShoppingCart,
-  SignIn,
-  SquaresFour,
-  UserPlus,
-  Users,
-} from "phosphor-react";
+  HiOutlineChatBubbleLeftRight,
+  HiOutlinePhoto,
+  HiOutlineHome,
+  HiOutlineCog8Tooth,
+  HiOutlineBell,
+} from "react-icons/hi2";
+import { HiOutlineUser } from "react-icons/hi2";
 
 const LeftSidebar = () => {
-  return <div>
-<Sidebar aria-label="Sidebar with multi-level dropdown example">
+  return (
+    <div>
+      <Sidebar aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={<SquaresFour size={24} />}>
-            Dashboard
+          <Sidebar.Item href="#" icon={<HiOutlineHome className="h-6 w-6" />}>
+            Home
           </Sidebar.Item>
-          <Sidebar.Item icon={<ShoppingCart size={24} />}>
-            E-commerce
+          <Sidebar.Item href="#" icon={<HiOutlineUser className="h-6 w-6 " />}>
+            Profile
+          </Sidebar.Item>
+          <Sidebar.Item href="#" icon={<HiOutlineBell ottomCenter className="h-6 w-6" />}>
+            Notification
+          </Sidebar.Item>
+
+          <Sidebar.Item
+            href="#"
+            icon={<HiOutlinePhoto className="h-6 w-6" />}
+            labelColor="gray"
+          >
+            Feeds
           </Sidebar.Item>
           <Sidebar.Item
             href="#"
-            icon={<LockSimple size={24} />}
-            labelColor="gray"
+            icon={<HiOutlineChatBubbleLeftRight className="h-6 w-6" />}
           >
-            Components
+            Message
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<Chat size={24} />}>
-            Inbox
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<Users size={24} />}>
-            Users
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<ShoppingBagOpen size={24} />}>
-            Products
+          <Sidebar.Item
+            href="#"
+            icon={<HiOutlineCog8Tooth ottomCenter className="h-6 w-6" />}
+          >
+            Setting
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={<SignIn size={24} />}>
-            Sign In
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={<UserPlus size={24} />}>
-            Sign Up
+            Log Out
           </Sidebar.Item>
         </Sidebar.ItemGroup>
-    </Sidebar>
-
-  </div>;
+      </Sidebar>
+    </div>
+  );
 };
 
 export default LeftSidebar;
