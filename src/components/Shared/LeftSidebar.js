@@ -15,6 +15,10 @@ const LeftSidebar = () => {
     <div>
       <Sidebar aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.ItemGroup>
+          <div>
+            <h1 className=" ml-2 text-3xl font-bold mb-5 text-metal-400">Share<span className="text-primary">Wave</span></h1>
+          </div>
+
           <Sidebar.Item href="#" icon={<HiOutlineHome className="h-6 w-6" />}>
             Home
           </Sidebar.Item>
