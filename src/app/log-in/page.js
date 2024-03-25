@@ -1,12 +1,45 @@
 /* eslint-disable react/no-unescaped-entities */
-"use client";
-import Link from "next/link";
 
-const page = () => {
+'use client'
+
+import { useSignInMutation } from "@/redux/features/user/userApi";
+import { Spinner } from "keep-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const LogIn = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [signIn, {isLoading, isSuccess}] = useSignInMutation();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signIn(formData)
+    console.log(formData);
+  };
+
+  if(isSuccess){
+    router.push('/');
+  }
+
   return (
     <div className="h-[100vh] bg-slate-100 ">
       <div className="flex justify-center items-center gap-14 h-4/5">
-        <div className="">
+        <div className=" hidden lg:block">
           <div>
             <h1 className="text-5xl font-bold mb-5 text-metal-400">
               Share<span className="text-primary">Wave</span>
@@ -14,14 +47,16 @@ const page = () => {
             <p className="text-lg">Connect with people and share your thoughts and life style.</p>
           </div>
         </div>
-        <div className="">
-          <form className=" shadow-xl py-20 px-10 rounded-lg bg-white w-[400px]">
+        <div className="w-full md:w-auto mx-4 md:mx-0">
+          <form onSubmit={handleSubmit} className=" shadow-xl py-20 px-10 rounded-lg bg-white w-full md:w-[400px]">
             <div className="mt-4">
               <input
                 className="border p-2 rounded-md w-full"
                 type="email"
                 name="email"
                 placeholder="Email"
+                onChange={handleChange}
+                required
               />
             </div>
             <div className="mt-4">
@@ -30,6 +65,8 @@ const page = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
+                onChange={handleChange}
+                required
               />
             </div>
             <div>
@@ -39,6 +76,7 @@ const page = () => {
                 value="Log In"
               />
             </div>
+            {isLoading && <Spinner className="my-4" color="gray" size="lg" />}
             <p className="mt-5">Don't have an account? <Link className=" text-blue-400 font-semibold" href={'/sign-up'}>Sign up</Link></p>
           </form>
         </div>
@@ -48,4 +86,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LogIn;

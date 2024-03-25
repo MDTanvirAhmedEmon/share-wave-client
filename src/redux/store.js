@@ -6,5 +6,5 @@ export const store = configureStore({
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware().concat(pokemonApi.middleware),
+  getDefaultMiddleware().concat(api.middleware),
 })

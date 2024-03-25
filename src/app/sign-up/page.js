@@ -1,13 +1,62 @@
-"use client";
+"use client"
 
+import { useSignUpMutation } from "@/redux/features/user/userApi";
+import { Spinner } from "keep-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const page = () => {
+const SignUp = () => {
+  const router = useRouter();
+  const [signUp, { data, isLoading, isError, isSuccess }] = useSignUpMutation();
+  console.log(isLoading)
+  console.log(data?.data?.accessToken)
+  console.log(isSuccess)
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phone: "",
+    gender: "",
+    dateOfBirth: new Date().toISOString(),
+    address: "",
+  });
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+
+    const { name, value } = e.target;
+    if (name === "dateOfBirth") {
+      setFormData({
+        ...formData,
+        [name]: new Date(value).toISOString(),
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    signUp(formData);
+
+  };
+  if(isSuccess){
+    router.push('/');
+  }
   return (
     <div className="h-[100vh] bg-slate-100 ">
-      <div className="flex justify-center items-center gap-14 h-[90%]">
-        <div className="">
-          <form className=" shadow-xl p-10 rounded-lg bg-white w-[400px]">
+      <div className="flex justify-center items-center gap-14 h-full md:h-[90%] ">
+        <div className="w-full md:w-auto m-5 md:m-0">
+          <form
+            onSubmit={handleSubmit}
+            className=" shadow-xl p-7 md:p-10 rounded-lg bg-white w-full md:w-[400px] "
+          >
             <h1 className="text-4xl font-bold mb-5 text-metal-400 text-center">
               Share<span className="text-primary">Wave</span>
             </h1>
@@ -17,6 +66,8 @@ const page = () => {
                 type="text"
                 name="firstName"
                 placeholder="First Name"
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -26,6 +77,8 @@ const page = () => {
                 type="text"
                 name="lastName"
                 placeholder="Last Name"
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -35,6 +88,8 @@ const page = () => {
                 type="email"
                 name="email"
                 placeholder="Email Address"
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -44,6 +99,8 @@ const page = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -53,6 +110,8 @@ const page = () => {
                 type="phone"
                 name="phone"
                 placeholder="Phone Number"
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -62,6 +121,8 @@ const page = () => {
                 type="text"
                 name="gender"
                 placeholder="Gender"
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -69,8 +130,10 @@ const page = () => {
               <input
                 className="border p-2 rounded-md w-full"
                 type="date"
-                name="date"
-                placeholder="Date"
+                name="dateOfBirth"
+                placeholder="Date Of Birth"
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -80,6 +143,8 @@ const page = () => {
                 type="text"
                 name="address"
                 placeholder="Address"
+                onChange={handleChange}
+                required
               />
             </div>
             <div>
@@ -89,6 +154,7 @@ const page = () => {
                 value="Sign Up"
               />
             </div>
+            {isLoading && <Spinner className="my-4" color="gray" size="lg" />}
             <p className="mt-5">
               Have an account?{" "}
               <Link className=" text-blue-400 font-semibold" href={"/log-in"}>
@@ -98,9 +164,8 @@ const page = () => {
           </form>
         </div>
       </div>
-
     </div>
   );
 };
 
-export default page;
+export default SignUp;
