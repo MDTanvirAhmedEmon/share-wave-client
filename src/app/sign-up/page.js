@@ -3,11 +3,11 @@
 import { useSignUpMutation } from "@/redux/features/user/userApi";
 import { Spinner } from "keep-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 const SignUp = () => {
-  const router = useRouter();
+
   const [signUp, { data, isLoading, isError, isSuccess }] = useSignUpMutation();
   console.log(isLoading)
   console.log(data?.data?.accessToken)
@@ -47,7 +47,7 @@ const SignUp = () => {
 
   };
   if(isSuccess){
-    router.push('/');
+    redirect('/')
   }
   return (
     <div className="h-[100vh] bg-slate-100 ">

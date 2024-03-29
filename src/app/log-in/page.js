@@ -1,39 +1,42 @@
 /* eslint-disable react/no-unescaped-entities */
 
-'use client'
+"use client";
 
 import { useSignInMutation } from "@/redux/features/user/userApi";
+import { accessToken } from "@/utils/accessToken";
 import { Spinner } from "keep-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 const LogIn = () => {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const [signIn, {isLoading, isSuccess}] = useSignInMutation();
+  const [signIn, { data,isLoading, isSuccess, error, isError }] =
+    useSignInMutation();
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signIn(formData)
+    signIn(formData);
     console.log(formData);
   };
 
-  if(isSuccess){
-    router.push('/');
+  if (data?.data?.accessToken) {
+    accessToken.setAccessToken(data?.data?.accessToken);
+    redirect('/')
   }
 
   return (
@@ -44,11 +47,16 @@ const LogIn = () => {
             <h1 className="text-5xl font-bold mb-5 text-metal-400">
               Share<span className="text-primary">Wave</span>
             </h1>
-            <p className="text-lg">Connect with people and share your thoughts and life style.</p>
+            <p className="text-lg">
+              Connect with people and share your thoughts and life style.
+            </p>
           </div>
         </div>
         <div className="w-full md:w-auto mx-4 md:mx-0">
-          <form onSubmit={handleSubmit} className=" shadow-xl py-20 px-10 rounded-lg bg-white w-full md:w-[400px]">
+          <form
+            onSubmit={handleSubmit}
+            className=" shadow-xl py-20 px-10 rounded-lg bg-white w-full md:w-[400px]"
+          >
             <div className="mt-4">
               <input
                 className="border p-2 rounded-md w-full"
@@ -77,7 +85,13 @@ const LogIn = () => {
               />
             </div>
             {isLoading && <Spinner className="my-4" color="gray" size="lg" />}
-            <p className="mt-5">Don't have an account? <Link className=" text-blue-400 font-semibold" href={'/sign-up'}>Sign up</Link></p>
+            {isError && <p className=" text-red-500">Wrong password or email</p>}
+            <p className="mt-5">
+              Don't have an account?{" "}
+              <Link className=" text-blue-400 font-semibold" href={"/sign-up"}>
+                Sign up
+              </Link>
+            </p>
           </form>
         </div>
       </div>
