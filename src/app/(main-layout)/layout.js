@@ -25,7 +25,7 @@ const layout = ({ children }) => {
         </div>
         {/* Main Body Content end */}
 
-        <div className="fixed right-0 top-0 bottom-0 border-l w-60 2xl:w-auto hidden lg:block">
+        <div className="fixed right-0 top-0 bottom-0 border-l w-60 2xl:w-auto hidden 2xl:block">
           <RightSidebar></RightSidebar>
         </div>
 

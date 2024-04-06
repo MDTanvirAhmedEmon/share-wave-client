@@ -15,7 +15,14 @@ const postApi = api.injectEndpoints({
     getMyPost: builder.query({
       query: () => `/post/my-post`,
     }),
+    loveReact: builder.mutation({
+      query: (data) => ({
+        url: `/react/love-react`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useCreatePostMutation, useGetAllPostQuery, useGetMyPostQuery } = postApi;
+export const { useCreatePostMutation, useGetAllPostQuery, useGetMyPostQuery, useLoveReactMutation } = postApi;

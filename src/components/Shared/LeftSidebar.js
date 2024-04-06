@@ -71,7 +71,7 @@ const LeftSidebar = () => {
               Create Wave
             </Sidebar.Item>
           </Link>
-          <Link href={"#"}>
+          <Link href={"/message"}>
             <Sidebar.Item
               className="mb-4"
               href="#"

@@ -1,62 +1,75 @@
-"use client";
-import { Heart } from "phosphor-react";
-import { Avatar, Card } from "keep-react";
+import profile from "../../../public/profile.jpg";
 
 const RightSidebar = () => {
+  const profileImage = {
+    backgroundImage: `URL(${profile.src})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
-    <div>
-      <Card
-        imgSrc="https://images.prismic.io/staticmania/821cee7b-6b44-48c4-ab95-8a525056489d_blog.jpg?auto=compress,format"
-        imgSize="md"
-        className="max-w-xs border-none rounded-none "
-      >
-        <Card.Container className="absolute right-3.5 top-3.5 flex h-10 w-10 cursor-pointer items-center justify-center bg-metal-200 rounded-none">
-          <Heart size={20} weight="bold" color="white" />
-        </Card.Container>
-        <Card.Container className="flex flex-col items-center justify-center">
-          <Card.Container className="absolute top-32  rounded-full ring-4 ring-white ring-offset-0">
-            <Avatar
-              size="2xl"
-              shape="circle"
-              img="/images/avatar/avatar-4.png"
-            />
-          </Card.Container>
-          <Card.Container className="mb-3 mt-10 text-center">
-            <Card.Title className="text-body-5 font-semibold text-metal-800 md:text-body-4">
-              Khairul Islam
-            </Card.Title>
-            <Card.Title className="!text-body-6 font-normal text-metal-400 md:text-body-5">
-              UI/UX Designer
-            </Card.Title>
-          </Card.Container>
-          <Card.Container className="flex w-full justify-between border-t border-t-metal-50 px-5 py-3">
-            <Card.Container className="text-center">
-              <Card.Title className="text-body-5 !font-normal text-metal-400 md:text-body-5 md:!font-medium">
-                Post
-              </Card.Title>
-              <Card.Title className="!text-body-1 !font-semibold text-metal-800">
-                254
-              </Card.Title>
-            </Card.Container>
-            <Card.Container className="text-center">
-              <Card.Title className="text-body-5 !font-normal text-metal-400 md:text-body-5 md:!font-medium">
-                Followers
-              </Card.Title>
-              <Card.Title className="!text-body-1 !font-semibold text-metal-800">
-                1245M
-              </Card.Title>
-            </Card.Container>
-            <Card.Container className="text-center">
-              <Card.Title className="text-body-5 !font-normal text-metal-400 md:text-body-5 md:!font-medium">
-                Following
-              </Card.Title>
-              <Card.Title className="!text-body-1 !font-semibold text-metal-800">
-                58
-              </Card.Title>
-            </Card.Container>
-          </Card.Container>
-        </Card.Container>
-      </Card>
+    <div className="px-8 pt-6">
+      <p className="font-bold text-lg mb-4">Suggested for you</p>
+      <div className="flex items-center gap-4 mb-6">
+        <div
+          className=" w-[50px] h-[50px] rounded-full ring-white shadow"
+          style={profileImage}
+        ></div>
+        <div>
+          <p className=" font-semibold text-sm">Tanvir Ahmed Emon</p>
+          <p className="  text-sm">December 21</p>
+        </div>
+        <div>
+          <p className="bg-primary hover:bg-[#6328a7] text-white px-2 rounded-lg cursor-pointer">
+            follow
+          </p>
+        </div>
+      </div>
+      <div className="flex items-center gap-4 mb-6">
+        <div
+          className=" w-[50px] h-[50px] rounded-full ring-white shadow"
+          style={profileImage}
+        ></div>
+        <div>
+          <p className=" font-semibold text-sm">Tanvir Ahmed Emon</p>
+          <p className="  text-sm">December 21</p>
+        </div>
+        <div>
+          <p className="bg-primary hover:bg-[#6328a7] text-white px-2 rounded-lg cursor-pointer">
+            follow
+          </p>
+        </div>
+      </div>
+      <div className="flex items-center gap-4 mb-6">
+        <div
+          className=" w-[50px] h-[50px] rounded-full ring-white shadow"
+          style={profileImage}
+        ></div>
+        <div>
+          <p className=" font-semibold text-sm">Tanvir Ahmed Emon</p>
+          <p className="  text-sm">December 21</p>
+        </div>
+        <div>
+          <p className="bg-primary hover:bg-[#6328a7] text-white px-2 rounded-lg cursor-pointer">
+            follow
+          </p>
+        </div>
+      </div>
+      <div className="flex items-center gap-4 mb-6">
+        <div
+          className=" w-[50px] h-[50px] rounded-full ring-white shadow"
+          style={profileImage}
+        ></div>
+        <div>
+          <p className=" font-semibold text-sm">Tanvir Ahmed Emon</p>
+          <p className="  text-sm">December 21</p>
+        </div>
+        <div>
+          <p className="bg-primary hover:bg-[#6328a7] text-white px-2 rounded-lg cursor-pointer">
+            follow
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

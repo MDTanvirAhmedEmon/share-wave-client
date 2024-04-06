@@ -16,11 +16,30 @@ const userApi = api.injectEndpoints({
         body: data,
       }),
     }),
+    updateProfile: builder.mutation({
+      query: (data) => ({
+        url: `/users/update-profile-picture`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
+    updateCover: builder.mutation({
+      query: (data) => ({
+        url: `/users/update-cover-photo`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
     getUserInfo: builder.query({
       query: () => `/users/get-user-info`,
     }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useGetUserInfoQuery } =
-  userApi;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useGetUserInfoQuery,
+  useUpdateProfileMutation,
+  useUpdateCoverMutation,
+} = userApi;

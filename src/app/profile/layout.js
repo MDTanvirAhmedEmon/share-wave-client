@@ -1,7 +1,6 @@
 import LeftSidebar from "@/components/Shared/LeftSidebar";
 import MobileFooter from "@/components/Shared/MobileFooter";
 import MobileHeader from "@/components/Shared/MobileHeader";
-import RightSidebar from "@/components/Shared/RightSidebar";
 import PrivateRoutes from "@/libs/privateRoutes";
 
 const layout = ({ children }) => {

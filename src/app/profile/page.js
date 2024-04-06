@@ -2,35 +2,80 @@
 import SinglePost from "@/components/Post/SinglePost";
 import { useGetMyPostQuery } from "@/redux/features/post/postApi";
 import { useGetUserInfoQuery } from "@/redux/features/user/userApi";
+import { Tooltip } from "keep-react";
+import emptyProfile from "../../../public/empty-profile.jpg";
+import emptyCover from "../../../public/your-cover.png";
+import { UpdateProfileModal } from "@/components/profile/UpdateProfileModal";
+import { useState } from "react";
+import { UpdateCoverModal } from "@/components/profile/UpdateCoverModal";
 
 const Profile = () => {
-  const { data, isLoading } = useGetUserInfoQuery(undefined,{ refetchOnMountOrArgChange: true });
-  const { data: postData, isLoading: postLoading } = useGetMyPostQuery(undefined,{ refetchOnMountOrArgChange: true });
+  const { data, isLoading } = useGetUserInfoQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  const { data: postData, isLoading: postLoading } = useGetMyPostQuery(
+    undefined,
+    { refetchOnMountOrArgChange: true }
+  );
 
-  const imageStyle = {
-    backgroundImage: `URL(${data?.data?.coverPhoto})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  };
-  const profileImage = {
-    backgroundImage: `URL(${data?.data?.profileImageUrl})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  };
+  const imageStyle = data?.data?.coverPhoto
+    ? {
+        backgroundImage: `URL(${data?.data?.coverPhoto})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }
+    : {
+        backgroundImage: `URL(${emptyCover.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      };
+
+  const profileImage = data?.data?.profileImageUrl
+    ? {
+        backgroundImage: `URL(${data?.data?.profileImageUrl})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }
+    : {
+        backgroundImage: `URL(${emptyProfile.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      };
+
+      const [open, setOpen] = useState(false);
+
+      const onOpenModal = () => setOpen(true);
+      const onCloseModal = () => setOpen(false);
+      const [openCover, setCoverOpen] = useState(false);
+
+      const onOpenCoverModal = () => setCoverOpen(true);
+      const onCloseCoverModal = () => setCoverOpen(false);
+
 
   return (
     <div>
       {/* cover */}
-      <div
-        className="w-full h-[200px] md:h-[400px] rounded-b-lg"
+
+      <div onClick={onOpenCoverModal}
+        className="w-full h-[200px] md:h-[400px] rounded-b-lg cursor-pointer"
         style={imageStyle}
-      ></div>
+      >
+      </div>
+
       {/* details */}
       <div className="flex ">
-        <div
-          className={`w-[100px] h-[100px] md:w-[180px] md:h-[180px] rounded-full ring-4 shadow-lg ring-white mt-[-60px]`}
-          style={profileImage}
-        ></div>
+        <Tooltip
+          content="Change profile photo"
+          trigger="hover"
+          placement="top"
+          animation="duration-300"
+          style="dark"
+        >
+          <div onClick={onOpenModal}
+            className={`w-[100px] h-[100px] md:w-[180px] md:h-[180px] rounded-full ring-4 shadow-lg ring-white mt-[-60px] cursor-pointer`}
+            style={profileImage}
+          ></div>
+        </Tooltip>
         <div className="mt-8 ml-6">
           <h2 className="text-lg md:text-2xl font-semibold">
             {data?.data?.firstName + " "}
@@ -66,6 +111,7 @@ const Profile = () => {
               <div className=" bg-slate-100 w-[500px] h-96 animate-pulse"></div>
             </div>
           </div>
+
         </div>
       )}
       <div className="w-auto md:w-[700px] mx-auto mt-8 flex flex-col justify-center">
@@ -73,6 +119,8 @@ const Profile = () => {
           <SinglePost key={post._id} post={post}></SinglePost>
         ))}
       </div>
+      <UpdateProfileModal open={open} onCloseModal={onCloseModal}></UpdateProfileModal>
+      <UpdateCoverModal open={openCover} onCloseModal={onCloseCoverModal}></UpdateCoverModal>
     </div>
   );
 };
