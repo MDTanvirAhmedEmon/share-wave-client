@@ -18,6 +18,7 @@ const Profile = () => {
     { refetchOnMountOrArgChange: true }
   );
 
+
   const imageStyle = data?.data?.coverPhoto
     ? {
         backgroundImage: `URL(${data?.data?.coverPhoto})`,

@@ -14,7 +14,6 @@ export const PostModal = ({ open, onCloseModal }) => {
     text: "",
   });
 
-  console.log(textData);
   const handleFile = (e) => {
     setFile(e.target.files[0]);
   };
@@ -72,7 +71,7 @@ export const PostModal = ({ open, onCloseModal }) => {
               disabled={isLoading}
               className="mt-6 bg-primary text-white py-1 px-5 rounded-lg cursor-pointer text-lg"
               type="submit"
-              value="Post"
+              value="Post Wave"
             />
           </div>
           {isLoading && (
