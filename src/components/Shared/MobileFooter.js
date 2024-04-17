@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   HiOutlineChatBubbleLeftRight,
   HiOutlineHome,
@@ -18,17 +18,16 @@ const MobileFooter = () => {
 
   return (
     <>
-    <div className=" flex justify-between h-14 items-center fixed bottom-0 left-0 right-0 px-4 border-t bg-white">
-      <Link href={"/"}>
-        <HiOutlineHome className="h-8 w-8" />
-      </Link>
-      <HiOutlineBell ottomCenter className="h-8 w-8" />
-      <GoPlusCircle onClick={onOpenModal} className="h-8 w-8" />
-      <HiOutlineChatBubbleLeftRight className="h-8 w-8" />
-      <HiOutlineCog8Tooth ottomCenter className="h-8 w-8" />
-
-    </div>
-    <PostModal open={open} onCloseModal={onCloseModal}></PostModal>
+      <div className=" flex justify-between h-14 items-center fixed bottom-0 left-0 right-0 px-4 border-t bg-white">
+        <Link href={"/"}>
+          <HiOutlineHome className="h-8 w-8" />
+        </Link>
+        <HiOutlineBell className="h-8 w-8" />
+        <GoPlusCircle onClick={onOpenModal} className="h-8 w-8" />
+        <HiOutlineChatBubbleLeftRight className="h-8 w-8" />
+        <HiOutlineCog8Tooth className="h-8 w-8" />
+      </div>
+      <PostModal open={open} onCloseModal={onCloseModal}></PostModal>
     </>
   );
 };

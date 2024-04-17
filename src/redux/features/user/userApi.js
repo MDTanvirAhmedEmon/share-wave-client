@@ -33,6 +33,12 @@ const userApi = api.injectEndpoints({
     getUserInfo: builder.query({
       query: () => `/users/get-user-info`,
     }),
+    getAllUsers: builder.query({
+      query: () => `/users/get-all-users`,
+    }),
+    getSingleUser: builder.query({
+      query: (id) => `/users/get-single-user/${id}`,
+    }),
   }),
 });
 
@@ -42,4 +48,6 @@ export const {
   useGetUserInfoQuery,
   useUpdateProfileMutation,
   useUpdateCoverMutation,
+  useGetAllUsersQuery,
+  useGetSingleUserQuery,
 } = userApi;

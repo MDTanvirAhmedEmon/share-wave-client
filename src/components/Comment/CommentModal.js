@@ -43,7 +43,7 @@ const CommentModal = ({ open, onCloseModal, id }) => {
   return (
     <div>
       <Modal open={open} onClose={onCloseModal} center>
-        <div className=" h-[90vh]  md:py-12 px-4 mx-auto flex flex-col md:flex-row  gap-4 relative">
+        <div className=" h-[90vh]  md:py-12 md:px-4 mx-auto flex flex-col md:flex-row  gap-4  w-auto">
           <div className="mt-3 self-center">
             <p>{data?.data?.text}</p>
             <Image
@@ -54,9 +54,9 @@ const CommentModal = ({ open, onCloseModal, id }) => {
               alt="post"
             />
             <div className=" hidden md:block mt-6">
-              <div className=" w-full flex justify-center mb-4 items-center md:w-[300px] ">
+              <div className=" w-auto flex justify-center mb-4 items-center md:w-[300px] ">
                 <input
-                  className=" border border-black  py-2  rounded-full mr-2 px-6"
+                  className=" border border-black  py-2  rounded-full mr-2 px-6 w-auto"
                   type="text"
                   name=""
                   ref={commentRef}
@@ -74,9 +74,9 @@ const CommentModal = ({ open, onCloseModal, id }) => {
           {/* comments */}
           <div className="md:w-[300px] mt-4 md:mt-0">
             <div className=" block md:hidden">
-              <div className=" w-full flex justify-center mb-4 items-center md:w-[300px] ">
+              <div className=" w-auto flex justify-center mb-4 items-center md:w-[300px] ">
                 <input
-                  className=" border border-black  py-2  rounded-full mr-2 px-6"
+                  className=" border border-black  py-2  rounded-full mr-2 px-6 w-auto"
                   type="text"
                   name=""
                   ref={mobileCommentRef}

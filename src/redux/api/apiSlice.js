@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1/share-wave/",
+    baseUrl: "https://share-wave-server-olive.vercel.app/api/v1/share-wave/",
     prepareHeaders: (headers) => {
       const token = accessToken.getAccessToken();
       console.log(token);
@@ -15,6 +15,6 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['comment', 'loveReact'],
+  tagTypes: ['comment', 'loveReact', 'post'],
   endpoints: () => ({}),
 });

@@ -15,7 +15,11 @@ const postApi = api.injectEndpoints({
     }),
     getMyPost: builder.query({
       query: () => `/post/my-post`,
-      providesTags: ['loveReact']
+      providesTags: ['loveReact', 'post']
+    }),
+    getUserMyPost: builder.query({
+      query: (id) => `/post/user-my-post/${id}`,
+      providesTags: ['loveReact', 'post']
     }),
     getSinglePost: builder.query({
       query: (id) => `/post/single-post/${id}`,
@@ -47,7 +51,14 @@ const postApi = api.injectEndpoints({
         body: data,
       }),
     }),
+    deleteSharePost: builder.mutation({
+      query: (id) => ({
+        url: `/share/share-post/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ['post']
+    }),
   }),
 });
 
-export const { useCreatePostMutation, useGetAllPostQuery, useGetMyPostQuery, useLoveReactMutation, useGetSinglePostQuery, useGetAllCommentQuery, useDoCommentMutation, useSharePostMutation } = postApi;
+export const { useCreatePostMutation, useGetAllPostQuery, useGetMyPostQuery, useLoveReactMutation, useGetSinglePostQuery, useGetAllCommentQuery, useDoCommentMutation, useSharePostMutation, useDeleteSharePostMutation, useGetUserMyPostQuery } = postApi;

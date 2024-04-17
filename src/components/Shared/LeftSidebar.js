@@ -24,7 +24,6 @@ const LeftSidebar = () => {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
-
   return (
     <div>
       <Sidebar aria-label="Sidebar with multi-level dropdown example">
@@ -43,7 +42,7 @@ const LeftSidebar = () => {
             </Sidebar.Item>
           </Link>
 
-          <Link href={"/profile"}>
+          <Link href={"/my-profile"}>
             <Sidebar.Item
               className="mb-4"
               icon={<HiOutlineUser className="h-6 w-6  " />}
@@ -55,7 +54,7 @@ const LeftSidebar = () => {
           <Link href={"#"}>
             <Sidebar.Item
               className="mb-4"
-              icon={<HiOutlineBell ottomCenter className="h-6 w-6 " />}
+              icon={<HiOutlineBell className="h-6 w-6 " />}
             >
               Notification
             </Sidebar.Item>
@@ -84,7 +83,7 @@ const LeftSidebar = () => {
             <Sidebar.Item
               className="mb-4"
               href="#"
-              icon={<HiOutlineCog8Tooth ottomCenter className="h-6 w-6 " />}
+              icon={<HiOutlineCog8Tooth className="h-6 w-6 " />}
             >
               Setting
             </Sidebar.Item>

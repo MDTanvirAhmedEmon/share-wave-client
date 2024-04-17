@@ -3,9 +3,11 @@ const setAccessToken = (token) => {
     localStorage.setItem('access_token', token);
 };
 
-const getAccessToken = (key) => {
-    const token = localStorage?.getItem('access_token');
-    return token;
+const getAccessToken = () => {
+
+        const token = localStorage?.getItem('access_token');
+        return token;
+
 };
 
 const removeAccessToken = () => {

@@ -16,7 +16,7 @@ const ShareModel = ({ open, onCloseModal, postId, ownerId, imageUrl }) => {
     };
 
     if(isSuccess) {
-        redirect('/profile')
+        redirect('/my-profile')
     }
     
   return (

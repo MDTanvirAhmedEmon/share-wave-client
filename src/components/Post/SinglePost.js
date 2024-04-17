@@ -7,6 +7,7 @@ import { useState } from "react";
 import Heart from "react-heart";
 import CommentModal from "../Comment/CommentModal";
 import ShareModel from "../Share/ShareModel";
+import ShareDeleteModel from "../Share/ShareDeleteModel";
 
 const SinglePost = ({ post, isLoading: postLoading }) => {
   const isSharedPost = !!post?.postId;
@@ -65,6 +66,11 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
   const [shareOpen, setShareOpen] = useState(false);
   const onShareOpenModal = () => setShareOpen(true);
   const onShareCloseModal = () => setShareOpen(false);
+
+  // delete share model
+  const [deleteShareOpen, setDeleteShareOpen] = useState(false);
+  const onDeleteShareOpenModal = () => setDeleteShareOpen(true);
+  const onDeleteShareCloseModal = () => setDeleteShareOpen(false);
 
   const months = [
     "January",
@@ -126,19 +132,24 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
           </div>
           <div className=" border p-4">
             {/* post owner */}
-            <div className="flex gap-4 mt-1">
-              <div
-                className=" w-[50px] h-[50px] rounded-full shadow-md"
-                style={ownerProfileImage}
-              ></div>
+            <div className="flex justify-between">
+              <div className="flex gap-4 mt-1">
+                <div
+                  className=" w-[50px] h-[50px] rounded-full shadow-md"
+                  style={ownerProfileImage}
+                ></div>
+                <div>
+                  <p className=" font-bold">
+                    {post?.ownerId?.firstName + " " + post?.ownerId?.lastName}
+                  </p>
+                  <p>
+                    {months[new Date(post?.postId?.createdAt).getMonth()]}{" "}
+                    {new Date(post?.postId?.createdAt).getDate()}
+                  </p>
+                </div>
+              </div>
               <div>
-                <p className=" font-bold">
-                  {post?.ownerId?.firstName + " " + post?.ownerId?.lastName}
-                </p>
-                <p>
-                  {months[new Date(post?.postId?.createdAt).getMonth()]}{" "}
-                  {new Date(post?.postId?.createdAt).getDate()}
-                </p>
+                <p onClick={onDeleteShareOpenModal} className=" text-4xl cursor-pointer">...</p>
               </div>
             </div>
             <div className="mt-3">
@@ -186,6 +197,7 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
             onCloseModal={onCloseModal}
             id={sharedPostId}
           ></CommentModal>
+
           <ShareModel
             open={shareOpen}
             onCloseModal={onShareCloseModal}
@@ -193,6 +205,13 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
             ownerId={post?.ownerId?._id}
             imageUrl={post?.postId?.imageUrl}
           ></ShareModel>
+
+          <ShareDeleteModel
+            open={deleteShareOpen}
+            onCloseModal={onDeleteShareCloseModal}
+            id={_id}
+            imageUrl={post?.postId?.imageUrl}
+          ></ShareDeleteModel>
         </div>
       ) : (
         //  normal post

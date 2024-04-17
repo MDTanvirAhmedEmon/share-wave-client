@@ -83,7 +83,7 @@ const Profile = () => {
             {data?.data?.lastName}
           </h2>
           <div className="flex gap-2 md:gap-6 mt-2 md:mt-4 md:text-md">
-            <p>post 14</p>
+            <p>post {postData?.data?.length}</p>
             <p>followers 243</p>
             <p>following 57</p>
           </div>
@@ -115,7 +115,7 @@ const Profile = () => {
 
         </div>
       )}
-      <div className="w-auto md:w-[700px] mx-auto mt-8 flex flex-col justify-center">
+      <div className="w-auto md:w-[700px] mx-auto mt-8 flex flex-col justify-center mb-14">
         {postData?.data.map((post) => (
           <SinglePost key={post._id} post={post}></SinglePost>
         ))}

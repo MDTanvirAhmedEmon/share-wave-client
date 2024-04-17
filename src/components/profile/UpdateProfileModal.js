@@ -25,7 +25,7 @@ export const UpdateProfileModal = ({ open, onCloseModal }) => {
   };
 
   if(isSuccess) {
-    redirect('/profile')
+    redirect('/my-profile')
   }
 
   return (
