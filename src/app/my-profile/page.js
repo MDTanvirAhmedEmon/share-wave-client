@@ -8,11 +8,19 @@ import emptyCover from "../../../public/your-cover.png";
 import { UpdateProfileModal } from "@/components/profile/UpdateProfileModal";
 import { useState } from "react";
 import { UpdateCoverModal } from "@/components/profile/UpdateCoverModal";
+import Link from "next/link";
+import { useGetFollowerQuery, useGetFollowingQuery } from "@/redux/features/follow/followApi";
 
 const Profile = () => {
   const { data, isLoading } = useGetUserInfoQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
+
+  // follower 
+  const {data:FollowerData} = useGetFollowerQuery();
+  // following 
+  const {data: FollowingData} = useGetFollowingQuery();
+
   const { data: postData, isLoading: postLoading } = useGetMyPostQuery(
     undefined,
     { refetchOnMountOrArgChange: true }
@@ -83,9 +91,9 @@ const Profile = () => {
             {data?.data?.lastName}
           </h2>
           <div className="flex gap-2 md:gap-6 mt-2 md:mt-4 md:text-md">
-            <p>post {postData?.data?.length}</p>
-            <p>followers 243</p>
-            <p>following 57</p>
+          <Link href={`/my-profile`}><p className=" cursor-pointer">Post {postData?.data?.length}</p></Link>
+            <Link href={`/my-profile/follower`}><p className=" cursor-pointer">Followers {FollowerData?.data?.length}</p></Link>
+            <Link href={`/my-profile/following`}><p className=" cursor-pointer">Following {FollowingData?.data?.length}</p></Link>
           </div>
         </div>
       </div>
@@ -107,9 +115,9 @@ const Profile = () => {
             </div>
             <div className="mt-3">
               {/* text */}
-              <div className=" bg-slate-100 w-[500px] h-10 mb-3 animate-pulse"></div>
+              <div className=" bg-slate-100 w-[300px] md:w-[500px] h-10 mb-3 animate-pulse"></div>
               {/* image */}
-              <div className=" bg-slate-100 w-[500px] h-96 animate-pulse"></div>
+              <div className=" bg-slate-100 w-[300px] md:w-[500px] h-96 animate-pulse"></div>
             </div>
           </div>
 

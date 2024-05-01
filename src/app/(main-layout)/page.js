@@ -24,9 +24,9 @@ const HomePage = () => {
             </div>
             <div className="mt-3">
               {/* text */}
-              <div className=" bg-slate-100 w-[500px] h-10 mb-3 animate-pulse"></div>
+              <div className=" bg-slate-100 w-[300px] md:w-[500px] h-10 mb-3 animate-pulse"></div>
               {/* image */}
-              <div className=" bg-slate-100 w-[500px] h-96 animate-pulse"></div>
+              <div className=" bg-slate-100 w-[300px] md:w-[500px] h-96 animate-pulse"></div>
             </div>
           </div>
         </div>
@@ -44,9 +44,9 @@ const HomePage = () => {
             </div>
             <div className="mt-3">
               {/* text */}
-              <div className=" bg-slate-100 w-[500px] h-10 mb-3 animate-pulse"></div>
+              <div className=" bg-slate-100 w-[300px] md:w-[500px] h-10 mb-3 animate-pulse"></div>
               {/* image */}
-              <div className=" bg-slate-100 w-[500px] h-96 animate-pulse"></div>
+              <div className=" bg-slate-100 w-[300px] md:w-[500px] h-96 animate-pulse"></div>
             </div>
           </div>
         </div>

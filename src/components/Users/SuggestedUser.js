@@ -1,11 +1,21 @@
 "use client";
+import { useDoFollowMutation, useUnFollowMutation } from "@/redux/features/follow/followApi";
 import Link from "next/link";
-import { useState } from "react";
 
 const SuggestedUser = ({ user }) => {
-  const { firstName, lastName, profileImageUrl, createdAt, _id } = user;
+  const { firstName, lastName, profileImageUrl, createdAt, _id, isFollowing } =
+    user;
 
-  // const { follow, setFollow } = useState(false);
+  const [doFollow, { isLoading }] = useDoFollowMutation();
+  const [unFollow, { isLoading: isLoadingUnFollow} ] = useUnFollowMutation();
+
+  const handleDoFollow = () => {
+    doFollow(_id);
+  };
+
+  const handleUnFollow = () => {
+    unFollow(_id);
+  };
 
   const profileImage = {
     backgroundImage: `URL(${profileImageUrl})`,
@@ -45,11 +55,24 @@ const SuggestedUser = ({ user }) => {
           {new Date(createdAt).getDate()}
         </p>
       </div>
-      <div>
-        <p className="bg-primary hover:bg-[#6328a7] text-white px-2 rounded-lg cursor-pointer">
-          follow
-        </p>
-      </div>
+      {isLoading || isLoadingUnFollow ? 
+        <p>loading...</p>
+       : (
+        <div>
+          {isFollowing ? (
+            <p onClick={handleUnFollow} className="bg-[#636363] hover:bg-[#6328a7] text-white px-2 rounded-lg cursor-pointer">
+              unfollow
+            </p>
+          ) : (
+            <p
+              onClick={handleDoFollow}
+              className="bg-primary hover:bg-[#6328a7] text-white px-2 rounded-lg cursor-pointer"
+            >
+              follow
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

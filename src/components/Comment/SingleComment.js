@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const SingleComment = ({ comment }) => {
   console.log(comment);
   const { userId, text } = comment;
@@ -19,7 +21,7 @@ const SingleComment = ({ comment }) => {
           style={profileImage}
         ></div>
         <div>
-          <p className=" font-semibold">{firstName + " " + lastName}</p>
+          <Link href={`/user-profile/${userId._id}`}><p className=" font-semibold cursor-pointer">{firstName + " " + lastName}</p></Link>
           <p>{text}</p>
         </div>
       </div>

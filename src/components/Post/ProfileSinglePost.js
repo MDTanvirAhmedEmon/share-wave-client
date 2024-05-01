@@ -7,12 +7,9 @@ import { useState } from "react";
 import Heart from "react-heart";
 import CommentModal from "../Comment/CommentModal";
 import ShareModel from "../Share/ShareModel";
-import ShareDeleteModel from "../Share/ShareDeleteModel";
-import Link from "next/link";
 
-const SinglePost = ({ post, isLoading: postLoading }) => {
+const ProfileSinglePost = ({ post, isLoading: postLoading }) => {
   const isSharedPost = !!post?.postId;
-  console.log(post);
 
   const { _id, userAlreadyReacted, userId } = post;
 
@@ -69,10 +66,6 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
   const onShareOpenModal = () => setShareOpen(true);
   const onShareCloseModal = () => setShareOpen(false);
 
-  // delete share model
-  const [deleteShareOpen, setDeleteShareOpen] = useState(false);
-  const onDeleteShareOpenModal = () => setDeleteShareOpen(true);
-  const onDeleteShareCloseModal = () => setDeleteShareOpen(false);
 
   const months = [
     "January",
@@ -123,12 +116,9 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
               style={postProfileImage}
             ></div>
             <div>
-              <Link href={`/user-profile/${post?.userId?._id}`}>
-                <p className=" font-bold cursor-pointer">
-                  {post?.userId?.firstName + " " + post?.userId?.lastName}
-                </p>
-              </Link>
-
+              <p className=" font-bold">
+                {post?.userId?.firstName + " " + post?.userId?.lastName}
+              </p>
               <p>
                 {months[new Date(post?.createdAt).getMonth()]}{" "}
                 {new Date(post?.createdAt).getDate()}
@@ -152,14 +142,6 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
                     {new Date(post?.postId?.createdAt).getDate()}
                   </p>
                 </div>
-              </div>
-              <div>
-                <p
-                  onClick={onDeleteShareOpenModal}
-                  className=" text-4xl cursor-pointer"
-                >
-                  ...
-                </p>
               </div>
             </div>
             <div className="mt-3">
@@ -215,13 +197,6 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
             ownerId={post?.ownerId?._id}
             imageUrl={post?.postId?.imageUrl}
           ></ShareModel>
-
-          <ShareDeleteModel
-            open={deleteShareOpen}
-            onCloseModal={onDeleteShareCloseModal}
-            id={_id}
-            imageUrl={post?.postId?.imageUrl}
-          ></ShareDeleteModel>
         </div>
       ) : (
         //  normal post
@@ -232,11 +207,9 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
               style={postProfileImage}
             ></div>
             <div>
-            <Link href={`/user-profile/${post?.userId?._id}`}>
-                <p className=" font-bold cursor-pointer">
-                  {post?.userId?.firstName + " " + post?.userId?.lastName}
-                </p>
-              </Link>
+              <p className=" font-bold">
+                {post?.userId?.firstName + " " + post?.userId?.lastName}
+              </p>
               <p>
                 {" "}
                 {months[new Date(post?.createdAt).getMonth()]}{" "}
@@ -301,4 +274,4 @@ const SinglePost = ({ post, isLoading: postLoading }) => {
   );
 };
 
-export default SinglePost;
+export default ProfileSinglePost;
