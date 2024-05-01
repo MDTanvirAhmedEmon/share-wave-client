@@ -4,10 +4,12 @@ const setAccessToken = (token) => {
 };
 
 const getAccessToken = () => {
-
-        const token = localStorage?.getItem('access_token');
+    if (typeof localStorage === 'undefined') {
+        return null;
+    } else {
+        const token = localStorage.getItem('access_token');
         return token;
-
+    }
 };
 
 const removeAccessToken = () => {
